@@ -1,0 +1,29 @@
+# Laravel
+/vendor/
+/node_modules/
+/public/storage
+/storage/*.key
+/storage/*.log
+/storage/*.sqlite
+/storage/debugbar/
+/bootstrap/cache/
+.env
+.env.*
+.phpunit.result.cache
+
+# React/Vue
+**/node_modules/
+**/dist/
+**/.next/
+**/coverage/
+
+# System Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Editor Files
+.idea/
+.vscode/
+*.log
