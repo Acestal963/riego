@@ -92,4 +92,25 @@ process.on('SIGINT', async () => {
     process.exit(0);
 });
 
+const iniciarSimulador = () => {
+    console.log('🚀 Iniciando simulador de sensores...');
+    
+    const intervalo = setInterval(simularDatos, 10000);
+    
+    process.on('SIGINT', async () => {
+        clearInterval(intervalo);
+        console.log('Deteniendo simulador...');
+        await borrarDatosAntesDeSalir();
+        process.exit(0);
+    });
+
+    return intervalo;
+};
+
+module.exports = {
+    iniciarSimulador,
+    simularDatos,
+    borrarDatosAntesDeSalir
+};
+
 setInterval(simularDatos, 10000);

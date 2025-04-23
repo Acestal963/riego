@@ -56,9 +56,11 @@ app.use('*', (req, res) => {
     }
   });
 });
+const { iniciarSimulador } = require('./sensorSimulator');
 
 // Iniciar servidor
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  iniciarSimulador(); // Inicia el simulador automáticamente
 });

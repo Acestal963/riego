@@ -22,7 +22,19 @@ const obtenerSensores = async (req, res) => {
         res.status(500).json({ error: 'Error al obtener sensores' });
     }
 };
-
+const obtenerSensoresPorUsuario = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const [sensores] = await pool.execute(
+            'SELECT * FROM Sensores WHERE id_usuario = ?',
+            [userId]
+        );
+        res.status(200).json(sensores);
+    } catch (error) {
+        console.error('Error al obtener sensores:', error);
+        res.status(500).json({ error: 'Error al obtener sensores' });
+    }
+};
 // Obtener datos de un sensor
 const obtenerDatosSensor = async (req, res) => {
     const { sensorId } = req.params;
@@ -82,5 +94,6 @@ const obtenerEstadisticasSensor = async (req, res) => {
 module.exports = {
     obtenerSensores,
     obtenerDatosSensor,
-    obtenerEstadisticasSensor
+    obtenerEstadisticasSensor,
+    obtenerSensoresPorUsuario
 };
